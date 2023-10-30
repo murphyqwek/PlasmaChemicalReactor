@@ -1,0 +1,84 @@
+﻿<Application x:Class="PlasmaChemicalReactor.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:PlasmaChemicalReactor"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/ModernSlider.xaml" />
+                <ResourceDictionary Source="Styles/ModifiedComboBox.xaml" />
+                <ResourceDictionary Source="Styles/ModifiedGroupBox.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <!--#region Colors -->
+            <SolidColorBrush Color="#a8a7a7" x:Key="BorderColor" />
+            <SolidColorBrush Color="#212121" x:Key="TextColor" />
+            <SolidColorBrush Color="#FFFFFF" x:Key="FieldBackGroundColor" />
+            <SolidColorBrush Color="#FAF0E6" x:Key="FormBackGroundColor" />
+
+            <!--#region Button Colors-->
+            <SolidColorBrush Color="#27a623" x:Key="StartButtonBorderColor" />
+            <SolidColorBrush Color="#36e630" x:Key="StartButtonBackGroundColor" />
+        
+            <SolidColorBrush Color="#f03a3a" x:Key="StopButtonBackGroundColor" />
+            <SolidColorBrush Color="#a12020" x:Key="StopButtonBorderColor" />
+            <!--#endregion-->
+        
+            <!--#region CheckBox Colors-->
+            <SolidColorBrush Color="#3dd60f" x:Key="ActiveCheckBox" />
+            <SolidColorBrush Color="#eb1515" x:Key="UnactiveCheckBox" />
+            <!--#endregion-->
+            <!--#endregion-->
+
+        
+            <!--#region Modifed Button Temaplate Style-->
+            <Style x:Key="ModifiedButton" TargetType="Button">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Border BorderBrush="{StaticResource StartButtonBorderColor}" BorderThickness="1" CornerRadius="4" Background="{StaticResource StartButtonBackGroundColor}">
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!--#endregion-->
+
+            <Style x:Key="ButtonisMouseOverTrigger" TargetType="Button">
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Opacity" Value="0.85" />
+                        <Setter Property="Cursor" Value="Hand"/>
+                    </Trigger>
+                    <Trigger Property="IsPressed" Value="True">
+                        <Setter Property="Opacity" Value="1" />
+                    </Trigger>
+                </Style.Triggers> 
+            </Style>
+
+        
+            <!--#region SubSystem CheckBox-->
+            <Style x:Key="SubSystemCheckBox" TargetType="CheckBox">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="CheckBox">
+                            <Grid>
+                                <Ellipse Name="RadioButtonExternalCircle" Width="25" Height="25" Fill="{StaticResource UnactiveCheckBox}"/>
+                                <Ellipse Width="20" Height="20" Fill="White" />
+                                <Ellipse Name="RadioButtonInternalCircle" Width="15" Height="15" Fill="{StaticResource UnactiveCheckBox}"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter TargetName="RadioButtonExternalCircle" Property="Fill" Value="{StaticResource ActiveCheckBox}"/>
+                                    <Setter TargetName="RadioButtonInternalCircle" Property="Fill" Value="{StaticResource ActiveCheckBox}"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!--#endregion-->
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
