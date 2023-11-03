@@ -20,7 +20,6 @@ namespace PlasmaChemicalReactor.Models.Presets
             }
             catch  
             {
-                ErrorMessageBox.Show("Не удалось загрузить пресет");
                 return null;
             }
         }

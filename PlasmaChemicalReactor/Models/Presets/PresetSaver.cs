@@ -6,15 +6,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using TestMODBUS.Models.MessageBoxes;
+using System.Windows.Documents;
+using PlasmaChemicalReactor.Exceptions;
 
 namespace PlasmaChemicalReactor.Models.Presets
 {
-    public static class PresetSave
+    public static class PresetSaver
     {
-        static public bool SavePreset(Preset Preset, string FilePath)
+        static public void SavePreset(Preset Preset, string FilePath)
         {
             if(Preset == null) 
                 throw new ArgumentNullException(nameof(Preset));
+
+            if (File.Exists(FilePath) && FileHelper.IsFileOpen(FilePath))
+                throw new FileAlreadyOpenException(FilePath);
 
             string presetSerialaized = JsonConvert.SerializeObject(Preset);
 
@@ -28,11 +33,8 @@ namespace PlasmaChemicalReactor.Models.Presets
             }
             catch
             {
-                ErrorMessageBox.Show("Не удалось сохранить пресет");
-                return false;
+                throw new CannotSaveFileException("пресет");
             }
-
-            return true;
         }
     }
 }
