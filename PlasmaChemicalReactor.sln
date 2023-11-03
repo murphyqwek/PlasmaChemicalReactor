@@ -3,13 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34009.444
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlasmaChemicalReactor", "PlasmaChemicalReactor\PlasmaChemicalReactor.csproj", "{5E8FAA47-D52C-46E2-9A7E-5D9709DC7FD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlasmaChemicalReactor", "PlasmaChemicalReactor\PlasmaChemicalReactor.csproj", "{5E8FAA47-D52C-46E2-9A7E-5D9709DC7FD0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{8C289710-1CBE-4D8F-A3D5-C787BD857CC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFTest", "WPFTest\WPFTest.csproj", "{5B509885-7080-4351-A695-550DD3E6B6A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFTest", "WPFTest\WPFTest.csproj", "{5B509885-7080-4351-A695-550DD3E6B6A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "ConsoleTest\ConsoleTest.csproj", "{93A18EC3-3853-4368-A119-8CF64BA37208}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleTest", "ConsoleTest\ConsoleTest.csproj", "{93A18EC3-3853-4368-A119-8CF64BA37208}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FB25F874-66EF-45AC-BC0E-B0BD8F65D9D2}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

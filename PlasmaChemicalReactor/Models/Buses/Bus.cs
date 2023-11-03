@@ -2,22 +2,33 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace PlasmaChemicalReactor.Models.Buses
 {
-    public class Bus : ISerialReadable
+    public class Bus : ISerialModule, ISerialListener, ISerialWriter
     {
-        public ISerialReadable.WriteSerialBytes WriteBytes { get; set; }
-        public ISerialReadable.WriteSerialString WriteString { get; set; }
+        public ISerialWriter.WriteSerialString WriteStringDelegate { get; set; }
+        public ISerialWriter.WriteSerialBytes WriteBytesDelegate { get; set; }
 
-        private Dictionary<string, ISerialReadable> modules = new Dictionary<string, ISerialReadable>();
 
-        public Bus(Dictionary<string, ISerialReadable> Modules) 
+        private Dictionary<string, ISerialModule> modules = new Dictionary<string, ISerialModule>();
+
+        public Bus(Dictionary<string, ISerialModule> Modules) 
         {
             if (Modules != null)
                 modules = Modules;
+
+            foreach(var Module in modules.Values)
+            {
+                if(Module is ISerialWriter)
+                {
+                    ((ISerialWriter)Module).WriteBytesDelegate += WriteModuleBytesData;
+                    ((ISerialWriter)Module).WriteStringDelegate += WriteModuleStringData;
+                }
+            }
         }
 
         private string getAddress(string data)
@@ -33,21 +44,68 @@ namespace PlasmaChemicalReactor.Models.Buses
         public void SerialDataHandler(string data)
         {
             string address = getAddress(data);
-            string pureData = getPureData(data);
-            if(modules.TryGetValue(address, out var module))
+            ISerialModule module;
+
+            if (!modules.TryGetValue(address, out module))
+                return;
+
+            if(module == null)
             {
-                module.SerialDataHandler(pureData);
+                modules.Remove(address);
+                return;
             }
+
+            if (module is not ISerialListener)
+                return;
+
+            string pureData = getPureData(data);
+
+            ISerialListener moduleListener = (ISerialListener)module;
+            moduleListener.SerialDataHandler(pureData);
         }
 
-        public bool AddModule(string adress, ISerialReadable module)
+        public bool AddModule(string address, ISerialModule module)
         {
-            return modules.TryAdd(adress, module);
+            if(!modules.TryAdd(address, module))
+                return false;
+
+            ((ISerialWriter)module).WriteBytesDelegate += WriteModuleBytesData;
+            ((ISerialWriter)module).WriteStringDelegate += WriteModuleStringData;
+
+            return true;
         }
 
         public void SerialPortDisconnect()
         {
             throw new NotImplementedException();
         }
+
+        public void SerialPortConnect()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void AddAddress(ref string data, ISerialModule module)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void AddAddress(ref byte[] data, ISerialModule module)
+        {
+            throw new NotImplementedException();
+        }
+
+        private bool WriteModuleStringData(string data, object sender)
+        {
+            AddAddress(ref data, (ISerialModule)sender);
+            return WriteStringDelegate(data, this);
+        }
+
+        private bool WriteModuleBytesData(byte[] data, object sender)
+        {
+            AddAddress(ref data, (ISerialModule)sender);
+            return WriteBytesDelegate(data, this);
+        }
+
     }
 }

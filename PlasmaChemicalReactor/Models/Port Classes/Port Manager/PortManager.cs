@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PlasmaChemicalReactor.Models.Port_Classes.Port_Manager.PortListeners;
+using PlasmaChemicalReactor.Models.Port_Classes.Port_Manager.PortListeners.Port_Classes;
+using System;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
@@ -9,12 +11,12 @@ namespace PlasmaChemicalReactor.Models.Port_Classes.Port_Manager
 {
     public static class PortManager
     {
-        private static Dictionary<string, PortListener> PortListeners = new Dictionary<string, PortListener>();
+        private static Dictionary<string, Port> PortListeners = new Dictionary<string, Port>();
         
-        public static bool SignClassToSerialPort(ISerialReadable Object, string PortName, int PortSpeed)
+        public static bool SignClassToSerialPort(ISerialModule Module, string PortName, int PortSpeed)
         {
-            if(Object == null) 
-                throw new ArgumentNullException(nameof(Object));
+            if(Module == null) 
+                throw new ArgumentNullException(nameof(Module));
             if(PortName == null)
                 throw new ArgumentNullException(nameof(PortName));
 
@@ -22,35 +24,35 @@ namespace PlasmaChemicalReactor.Models.Port_Classes.Port_Manager
             if(!PortNamesList.IsPortAvaible(PortName))
                 return false;
 
-            PortListener portListener = new PortListener(Object, PortName, PortSpeed);
+            var Port = PortFabric.CreatePort(Module, new SerialPort(PortName, PortSpeed));
 
-            ClosePortListnenerContainsSerialReadableObject(Object);
+            DisconnectPortByModule(Module);
                 
             PortListeners.Add(PortName, portListener);
 
             return true;
         }
 
-        static private void ClosePortListnenerContainsSerialReadableObject(ISerialReadable SerialReadableObejct)
+        static private void DisconnectPortByModule(ISerialModule Module)
         {
-            foreach(var PortListener in PortListeners.Values)
+            foreach(var Port in PortListeners.Values)
             {
-                if(PortListener.SerialReadableObject == SerialReadableObejct)
+                if(Port.Module == Module)
                 {
-                    PortListener.StopListen();
-                    ClosePort(PortListener.PortName);
+                    DisconnectPort(Port.PortName);
+                    break;
                 }
             }
         }
 
-        public static void ClosePort(string PortName)
+        public static void DisconnectPort(string PortName)
         {
-            PortListener portListener;
+            Port portListener;
 
             if (!PortListeners.TryGetValue(PortName, out portListener))
                 return;
 
-            portListener.Close();
+            portListener.Disconnect();
 
             PortListeners.Remove(PortName);
         }
@@ -81,9 +83,12 @@ namespace PlasmaChemicalReactor.Models.Port_Classes.Port_Manager
 
         public static void StopPortListener(string PortName)
         {
-            if (PortListeners.TryGetValue(PortName, out PortListener portListener))
+            if (PortListeners.TryGetValue(PortName, out var port))
             {
-                portListener.StopListen();
+                if(port is ISerialListener)
+                {
+                    var 
+                }
             }
         }
     }
