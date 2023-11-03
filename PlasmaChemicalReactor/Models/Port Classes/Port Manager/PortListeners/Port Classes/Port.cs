@@ -27,18 +27,18 @@ namespace PlasmaChemicalReactor.Models.Port_Classes.Port_Manager.PortListeners.P
             port = Port;
         }
 
-        public void Close()
+        public virtual void Close()
         {
             port.Close();
         }
 
-        public void Disconnect()
+        public virtual void Disconnect()
         {
             port.Close();
             module.SerialPortDisconnect();
         }
 
-        public void Open()
+        public virtual void Open()
         {
             port.Open();
         }

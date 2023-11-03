@@ -28,7 +28,7 @@ namespace PlasmaChemicalReactor.Models.Port_Classes.Port_Manager
 
             DisconnectPortByModule(Module);
                 
-            PortListeners.Add(PortName, portListener);
+            PortListeners.Add(PortName, Port);
 
             return true;
         }
@@ -59,24 +59,27 @@ namespace PlasmaChemicalReactor.Models.Port_Classes.Port_Manager
 
         public static void RunAllPortListeners()
         {
-            foreach(var portListener in PortListeners.Values)
+            foreach(var port in PortListeners.Values)
             {
+                var portListener = (IPortListener)port;
                 portListener.StartListen();
             }
         }
 
         public static void RunPortListener(string PortName)
         {
-            if(PortListeners.TryGetValue(PortName, out PortListener portListener))
+            if(PortListeners.TryGetValue(PortName, out var port))
             {
+                var portListener = (IPortListener)port;
                 portListener.StartListen();
             }
         } 
 
         public static void StopAllPortListeners()
         {
-            foreach (var portListener in PortListeners.Values)
+            foreach (var port in PortListeners.Values)
             {
+                var portListener = (IPortListener)port;
                 portListener.StopListen();
             }
         }
@@ -85,9 +88,10 @@ namespace PlasmaChemicalReactor.Models.Port_Classes.Port_Manager
         {
             if (PortListeners.TryGetValue(PortName, out var port))
             {
-                if(port is ISerialListener)
+                if(port is IPortListener)
                 {
-                    var 
+                    var portListener = (IPortListener)port;
+                    portListener.StopListen();
                 }
             }
         }

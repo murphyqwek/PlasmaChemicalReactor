@@ -22,13 +22,13 @@ namespace PlasmaChemicalReactor.Models.Port_Classes.Port_Manager.PortListeners.P
 
             ISerialWriter writerModule = module as ISerialWriter;
 
-            writerModule.WriteString += WriteString;
-            writerModule.SetPlasmaChemicalReactor.Models.Port_Classes.Port_Manager.ISerialWriter.WriteBytes(writerModule.GetPlasmaChemicalReactor.Models.Port_Classes.Port_Manager.ISerialWriter.WriteBytes() + WriteBytes);
+            writerModule.WriteStringDelegate += WriteString;
+            writerModule.WriteBytesDelegate += WriteBytes;
 
             module.SerialPortConnect();
         }
 
-        private bool WriteString(string data)
+        private bool WriteString(string data, object sender)
         {
             if (port == null)
                 return false;
@@ -46,7 +46,7 @@ namespace PlasmaChemicalReactor.Models.Port_Classes.Port_Manager.PortListeners.P
             }
         }
 
-        private bool WriteBytes(byte[] data)
+        private bool WriteBytes(byte[] data, object sender)
         {
             if (port == null)
                 return false;
