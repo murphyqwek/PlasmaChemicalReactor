@@ -24,5 +24,15 @@ namespace PlasmaChemicalReactor
         {
             InitializeComponent();
         }
+
+        private void CloseWindow(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
     }
 }

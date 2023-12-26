@@ -9,6 +9,7 @@
                 <ResourceDictionary Source="Styles/ModernSlider.xaml" />
                 <ResourceDictionary Source="Styles/ModifiedComboBox.xaml" />
                 <ResourceDictionary Source="Styles/ModifiedGroupBox.xaml" />
+                <ResourceDictionary Source="Styles/Colors.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <!--#region Colors -->
             <SolidColorBrush Color="#a8a7a7" x:Key="BorderColor" />
