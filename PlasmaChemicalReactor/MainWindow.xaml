@@ -84,11 +84,11 @@
 
                         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5 0 0 0">
                             <CheckBox Style="{StaticResource SubSystemCheckBox}" Margin="0 0 5 0"/>
-                            <TextBlock Text="Вентиляция" VerticalAlignment="Center" FontSize="15.0" Margin="0 0 10 0"/>
+                            <TextBlock Text="Вентиляция" Foreground="{StaticResource UnSelectedTextColor}" VerticalAlignment="Center" FontSize="15.0" Margin="0 0 10 0"/>
                             <CheckBox Style="{StaticResource SubSystemCheckBox}" Margin="0 0 5 0"/>
-                            <TextBlock Text="Охлаждение" VerticalAlignment="Center" FontSize="15.0" Margin="0 0 10 0"/>
+                            <TextBlock Text="Охлаждение" Foreground="{StaticResource UnSelectedTextColor}" VerticalAlignment="Center" FontSize="15.0" Margin="0 0 10 0"/>
                             <CheckBox Style="{StaticResource SubSystemCheckBox}" Margin="0 0 5 0"/>
-                            <TextBlock Text="Газ" VerticalAlignment="Center" FontSize="15.0"/>
+                            <TextBlock Text="Газ" Foreground="{StaticResource UnSelectedTextColor}" VerticalAlignment="Center" FontSize="15.0"/>
                         </StackPanel>
 
                         <Grid Grid.Row="1">
@@ -98,11 +98,19 @@
                             </Grid.ColumnDefinitions>
 
                             <ProgressBar Grid.Column="0" Value="50" Width="auto" Margin="5" Background="Transparent"/>
-                            <TextBlock Grid.Column="1" Text="Синтез: 50%" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Grid.Column="1" Foreground="{StaticResource UnSelectedTextColor}" Text="Синтез: 50%" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         </Grid>
                     </Grid>
                 </Border>
-                
+
+                <TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="5" HorizontalAlignment="Left">
+                    <Run Text="Состояние реактора" FontWeight="Bold" Foreground="{StaticResource UnSelectedTextColor}"/>
+                    <LineBreak />
+                    <Run Text="Ожидание команды" Foreground="{StaticResource LightBlackTextColor}"/>
+                </TextBlock>
+
+                <Button Grid.Column="1" Content="Запуск" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="100" Height="30" Margin="0 0 20 0"/>
+
                 <!--#endregion-->
             </Grid>
         </Border>
