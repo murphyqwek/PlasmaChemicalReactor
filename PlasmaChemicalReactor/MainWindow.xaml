@@ -6,8 +6,12 @@
         xmlns:local="clr-namespace:PlasmaChemicalReactor"
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="720" 
-        AllowsTransparency="True" Background="Transparent" WindowStyle="None"
+        MinHeight="500" MinWidth="720"
+        WindowStyle="None"
         MouseLeftButtonDown="Window_MouseLeftButtonDown">
+    <WindowChrome.WindowChrome>
+        <WindowChrome GlassFrameThickness="1" CornerRadius="0" CaptionHeight="0"/>
+    </WindowChrome.WindowChrome>
     <Grid Background="{StaticResource WhiteColor}">
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
@@ -31,8 +35,14 @@
             
             <!--#region Window Controls -->
 
-            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5">
-                <Button Content="X" BorderThickness="0" Foreground="{StaticResource WhiteColor}" Background="Transparent" FontSize="7.0" Click="CloseWindow"/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Style="{StaticResource WindowButtonStyle}" Content="&#xf2d1;" Width="50" Click="MinimizeWindow"/>
+                <Button Style="{StaticResource WindowMaximizeButtonStyle}" Width="50" Click="MaximizeWindow">
+             
+                </Button>
+                <!-- f0c8 - чтобы свернуть -->
+                <Button Style="{StaticResource WindowButtonStyle}" Content="&#xf00d;" Width="50" Click="CloseWindow"/>
+                
             </StackPanel>
 
             <!--#endregion-->

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PlasmaChemicalReactor.Models.Port_Classes
+namespace PlasmaChemicalReactor.Models.Ports
 {
     public static class PortSpeedList
     {

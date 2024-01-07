@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO.Ports;
 
-namespace PlasmaChemicalReactor.Models.Port_Classes
+namespace PlasmaChemicalReactor.Models.Ports
 {
     static class PortNamesList
     {

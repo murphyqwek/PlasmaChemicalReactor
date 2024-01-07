@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PlasmaChemicalReactor.Models.Port_Classes.Port_Manager.PortListeners.Port_Classes
+namespace PlasmaChemicalReactor.Models.Ports.Port_Manager.PortListeners.Port_Classes
 {
     public abstract class Port
     {

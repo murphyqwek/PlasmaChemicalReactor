@@ -6,28 +6,37 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles/ModernSlider.xaml" />
-                <ResourceDictionary Source="Styles/ModifiedComboBox.xaml" />
-                <ResourceDictionary Source="Styles/ModifiedGroupBox.xaml" />
-                <ResourceDictionary Source="Styles/Colors.xaml" />
+                <ResourceDictionary Source="Styles/ModernSlider.xaml"/>
+                <ResourceDictionary Source="Styles/ModifiedComboBox.xaml"/>
+                <ResourceDictionary Source="Styles/ModifiedGroupBox.xaml"/>
+                <ResourceDictionary Source="Styles/Colors.xaml"/>
+                <ResourceDictionary Source="Styles/Buttons/WindowButtonStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
+            <FontFamily x:Key="FontAwesomeSolid">
+                ./Resources/Fonts/#Font Awesome 6 Free Solid
+            </FontFamily>
+            <FontFamily x:Key="FontAwesomeRegular">
+                ./Resources/Fonts/#Font Awesome 6 Free Regular
+            </FontFamily>
+
             <!--#region Colors -->
-            <SolidColorBrush Color="#a8a7a7" x:Key="BorderColor" />
-            <SolidColorBrush Color="#212121" x:Key="TextColor" />
-            <SolidColorBrush Color="#FFFFFF" x:Key="FieldBackGroundColor" />
-            <SolidColorBrush Color="#FAF0E6" x:Key="FormBackGroundColor" />
+            <SolidColorBrush Color="#a8a7a7" x:Key="BorderColor"/>
+            <SolidColorBrush Color="#212121" x:Key="TextColor"/>
+            <SolidColorBrush Color="#FFFFFF" x:Key="FieldBackGroundColor"/>
+            <SolidColorBrush Color="#FAF0E6" x:Key="FormBackGroundColor"/>
 
             <!--#region Button Colors-->
-            <SolidColorBrush Color="#27a623" x:Key="StartButtonBorderColor" />
-            <SolidColorBrush Color="#36e630" x:Key="StartButtonBackGroundColor" />
+            <SolidColorBrush Color="#27a623" x:Key="StartButtonBorderColor"/>
+            <SolidColorBrush Color="#36e630" x:Key="StartButtonBackGroundColor"/>
         
-            <SolidColorBrush Color="#f03a3a" x:Key="StopButtonBackGroundColor" />
-            <SolidColorBrush Color="#a12020" x:Key="StopButtonBorderColor" />
+            <SolidColorBrush Color="#f03a3a" x:Key="StopButtonBackGroundColor"/>
+            <SolidColorBrush Color="#a12020" x:Key="StopButtonBorderColor"/>
             <!--#endregion-->
         
             <!--#region CheckBox Colors-->
-            <SolidColorBrush Color="#3dd60f" x:Key="ActiveCheckBox" />
-            <SolidColorBrush Color="#eb1515" x:Key="UnactiveCheckBox" />
+            <SolidColorBrush Color="#3dd60f" x:Key="ActiveCheckBox"/>
+            <SolidColorBrush Color="#eb1515" x:Key="UnactiveCheckBox"/>
             <!--#endregion-->
             <!--#endregion-->
 

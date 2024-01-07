@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PlasmaChemicalReactor.Models.Port_Classes.Port_Manager.PortListeners
+namespace PlasmaChemicalReactor.Models.Ports.Port_Manager.PortListeners
 {
     public interface IPortListener
     {
